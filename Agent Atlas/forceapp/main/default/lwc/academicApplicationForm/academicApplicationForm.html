@@ -1,0 +1,295 @@
+<template> 
+
+    <lightning-card
+        title="Academic Application Intake Portal"
+        icon-name="standard:education">
+
+        <!-- MAIN LAYOUT -->
+
+        <div class={applicationLayoutClass}>
+
+            <!-- SIDEBAR -->
+
+            <div class="sidebar">
+
+                <c-application-progress-sidebar
+                    current-page={currentPage}
+                    total-pages={sidebarTotalPages}
+                    can-access-admin-page={canUseAdminApplicationContext}>
+                </c-application-progress-sidebar>
+
+            </div>
+
+            <!-- CONTENT -->
+
+            <div class="content-area">
+
+                <div class="form-workspace">
+
+                    <div class="form-main">
+
+                <!-- SAVE STATUS -->
+
+                <div class="status-indicator-container slds-m-bottom_medium">
+
+                    <template if:true={isSaving}>
+
+                        <span class="text-saving">
+
+                            Saving...
+
+                        </span>
+
+                    </template>
+
+                    <template if:false={isSaving}>
+
+                        <span class={saveStatusClass}>
+
+                            {saveStatus}
+
+                        </span>
+
+                    </template>
+
+                </div>
+
+                <!-- FORM -->
+
+                <template if:false={isSubmitted}>
+
+                    <c-dynamicformpage
+                        current-page={currentPage}
+                        form-data={formData}
+                        full-schema={schemaQuestions}
+                        ai-field-messages={aiFieldMessages}
+                        source-breakdown={sourceBreakdownByQuestion}
+                        compact-layout={isSubmissionRecordMode}
+                        onfieldchange={handleFieldChange}
+                        onfieldrevert={handleFieldRevert}
+                        onfieldundo={handleFieldUndo}
+                        onfieldredo={handleFieldRedo}>
+
+                    </c-dynamicformpage>
+
+                </template>
+
+                <!-- SUCCESS -->
+
+                <template if:true={isSubmitted}>
+
+                    <div class="success-panel">
+
+                        <lightning-icon
+                            icon-name="utility:success"
+                            size="large">
+
+                        </lightning-icon>
+
+                        <h2 class="slds-text-heading_large slds-m-top_medium">
+
+                            Application Submitted Successfully
+
+                        </h2>
+
+                        <p class="slds-m-top_small">
+
+                            Reference Number:
+
+                        </p>
+
+                        <div class="display-id-box slds-m-top_small">
+
+                            <strong>
+
+                                {submittedReference}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </template>
+
+                <!-- BUTTONS -->
+
+                <template if:false={isSubmitted}>
+
+                    <div class="sticky-footer">
+
+                    <button
+                        class="slds-button slds-button_neutral"
+                        onclick={handlePrevious}
+                        disabled={isFirstPage}
+                        type="button">
+
+                        Previous
+
+                    </button>
+
+                    <template if:false={isLastPage}>
+
+                        <button
+                            class="slds-button slds-button_brand"
+                            onclick={handleNext}
+                            type="button">
+
+                            Next
+
+                        </button>
+
+                    </template>
+
+                    <template if:true={isLastPage}>
+
+                        <button
+                            class="slds-button slds-button_success"
+                            onclick={handleSubmit}
+                            type="button">
+
+                            Submit Application
+
+                        </button>
+
+                    </template>
+
+                    </div>
+
+                </template>
+
+                    </div>
+
+                    <!-- AI AUTO FILL -->
+
+                    <aside class="ai-assistant-panel">
+
+                        <c-ai-form-filler-button
+
+                            form-data={formData}
+
+                            current-page={currentPage}
+
+                            form-config={schemaQuestions}
+
+                            submission-id={submissionId}
+
+                            target-application-id={activeAdminApplicationId}
+
+                            onaifilled={handleAIFilled}
+                            onaistatuschange={handleAIStatusChange}>
+
+                        </c-ai-form-filler-button>
+
+                        <c-ai-form-filler-chat
+                            form-data={formData}
+                            current-page={currentPage}
+                            form-config={schemaQuestions}
+                            submission-id={submissionId}
+                            target-application-id={activeAdminApplicationId}
+                            can-update-admin-fields={canUseAdminApplicationContext}
+                            onfieldaimessage={handleFieldAIMessage}
+                            onaifilled={handleAIFilled}
+                            onaistatuschange={handleAIStatusChange}>
+
+                        </c-ai-form-filler-chat>
+
+                        <template if:true={showManualAdminApplicationInput}>
+
+                            <div class="admin-application-context">
+
+                                <label
+                                    class="admin-application-context__label"
+                                    for="adminApplicationId">
+
+                                    Academic Application Record Id
+
+                                </label>
+
+                                <input
+                                    id="adminApplicationId"
+                                    class="admin-application-context__input"
+                                    value={adminApplicationId}
+                                    onchange={handleAdminApplicationIdChange}
+                                    placeholder="Enter Academic_Application__c Id"
+                                    type="text" />
+
+                                <p class="admin-application-context__hint">
+
+                                    Admin-only. AI fill will use this selected application and its applicant Contact.
+
+                                </p>
+
+                                <template if:true={adminApplicationAccessMessage}>
+
+                                    <p class="admin-application-context__hint">
+
+                                        {adminApplicationAccessMessage}
+
+                                    </p>
+
+                                </template>
+
+                            </div>
+
+                        </template>
+
+                        <template if:true={hasAutoFilledData}>
+
+                            <button
+                                class="slds-button slds-button_destructive clear-ai-filled-button"
+                                onclick={handleClearAllAIFilledData}
+                                type="button">
+
+                                Clear AI-filled data
+
+                            </button>
+
+                        </template>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <template if:true={aiLoading}>
+
+            <div class="ai-page-loading-overlay">
+
+                <div class="ai-page-loading-card">
+
+                    <div
+                        class="ai-loading-mark"
+                        role="status"
+                        aria-label="AI is filling the form">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                    <p class="ai-page-loading-title">
+
+                        Sprinkling a little AI on your form...
+
+                    </p>
+
+                    <p class="ai-page-loading-message">
+
+                        Finding the right answers, one field at a time...
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </template>
+
+    </lightning-card>
+
+</template>

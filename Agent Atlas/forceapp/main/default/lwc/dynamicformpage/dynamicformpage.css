@@ -1,0 +1,105 @@
+.page-container {
+
+    display: flex;
+
+    gap: 2rem;
+
+    align-items: flex-start;
+
+}
+
+/* LEFT SIDEBAR */
+
+.sidebar-section {
+
+    width: 340px;
+
+    flex-shrink: 0;
+
+    position: sticky;
+
+    top: 20px;
+
+}
+
+/* RIGHT FORM AREA */
+
+.form-section {
+
+    flex: 1;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 2rem;
+
+    border: 1px solid #d8dde6;
+
+    min-height: 600px;
+
+}
+
+/* PAGE TITLE */
+
+.page-title {
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    color: #16325c;
+
+    margin-bottom: 2rem;
+
+    border-bottom: 1px solid #d8dde6;
+
+    padding-bottom: 1rem;
+
+}
+
+.form-fields-grid {
+
+    align-items: start;
+
+    display: grid;
+
+    gap: 1.4rem 2rem;
+
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+}
+
+.form-fields-grid.compact {
+
+    grid-template-columns: minmax(0, 1fr);
+
+}
+
+.form-field-column {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1.4rem;
+
+    min-width: 0;
+
+}
+
+.form-field-item {
+
+    min-width: 0;
+
+}
+
+@media (max-width: 768px) {
+
+    .form-fields-grid {
+
+        grid-template-columns: minmax(0, 1fr);
+
+    }
+
+}

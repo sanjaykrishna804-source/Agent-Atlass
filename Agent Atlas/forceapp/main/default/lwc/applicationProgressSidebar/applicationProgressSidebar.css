@@ -1,0 +1,116 @@
+.progress-container {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+/* EACH STEP */
+
+.progress-step {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+/* BASE CIRCLE */
+
+.progress-circle {
+
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    color: white;
+
+}
+
+/* COMPLETED */
+
+.progress-circle.completed {
+
+    background: #2e844a;
+
+}
+
+/* CURRENT */
+
+.progress-circle.current {
+
+    background: #0176d3;
+
+}
+
+/* PENDING */
+
+.progress-circle.pending {
+
+    background: #d8dde6;
+
+    color: #16325c;
+
+}
+
+.progress-circle.restricted {
+
+    background: #eef1f5;
+
+    border: 2px dashed #a8b0bd;
+
+    color: #6b7280;
+
+}
+
+.restricted-step {
+
+    opacity: 0.58;
+
+}
+
+/* LABEL */
+
+.progress-label {
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #16325c;
+
+    line-height: 1.3;
+
+}
+
+.progress-note {
+
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 0.68rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.02em;
+
+    margin-top: 0.12rem;
+
+    text-transform: uppercase;
+
+}

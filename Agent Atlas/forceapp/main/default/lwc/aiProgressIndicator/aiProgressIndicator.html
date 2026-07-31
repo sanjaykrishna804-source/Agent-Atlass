@@ -1,0 +1,22 @@
+<template> 
+    <template if:true={isLoading}>
+
+        <div class="progress-container">
+
+            <lightning-spinner
+                alternative-text="AI Processing"
+                size="medium">
+
+            </lightning-spinner>
+
+            <div class="status-text">
+
+                {statusMessage}
+
+            </div>
+
+        </div>
+
+    </template>
+
+</template>

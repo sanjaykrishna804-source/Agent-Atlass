@@ -1,0 +1,269 @@
+<template>
+
+    <div class={containerClass}>
+
+        <template if:true={hasFieldStatus}>
+
+            <div class="ai-field-state-row">
+
+                <span class={fieldStatusClass}>
+
+                    {fieldStatusLabel}
+
+                </span>
+
+                <template if:true={canRevertToAIValue}>
+
+                    <button
+                        class="revert-ai-value-button"
+                        onclick={handleRevertToAIValue}
+                        type="button">
+
+                        Revert to AI value
+
+                    </button>
+
+                </template>
+
+                <button
+                    class="field-history-button"
+                    disabled={canUndoDisabled}
+                    onclick={handleUndoFieldValue}
+                    title="Undo last change"
+                    type="button">
+
+                    Undo
+
+                </button>
+
+                <button
+                    class="field-history-button"
+                    disabled={canRedoDisabled}
+                    onclick={handleRedoFieldValue}
+                    title="Redo last undone change"
+                    type="button">
+
+                    Redo
+
+                </button>
+
+            </div>
+
+        </template>
+
+        <!-- PICKLIST -->
+
+        <template if:true={isPicklist}>
+
+            <lightning-combobox
+                name={fieldConfig.id}
+                label={fieldConfig.label}
+                value={currentValue}
+                placeholder="Select an option"
+                options={options}
+                required={fieldConfig.required}
+                field-level-help={fieldConfig.helpText}
+                onchange={handlePicklistChange}
+                onblur={handleBlur}
+                class="input-node">
+
+            </lightning-combobox>
+
+        </template>
+
+        <!-- TEXTAREA -->
+
+        <template if:true={isTextarea}>
+
+            <lightning-textarea
+                name={fieldConfig.id}
+                label={fieldConfig.label}
+                value={currentValue}
+                required={fieldConfig.required}
+                field-level-help={fieldConfig.helpText}
+                onchange={handleInputChange}
+                onblur={handleBlur}
+                class="input-node">
+
+            </lightning-textarea>
+
+        </template>
+
+        <!-- RADIO GROUP -->
+
+        <template if:true={isRadio}>
+
+            <lightning-radio-group
+                name={fieldConfig.id}
+                label={fieldConfig.label}
+                options={options}
+                value={currentValue}
+                type="radio"
+                required={fieldConfig.required}
+                onchange={handleRadioChange}
+                onblur={handleBlur}
+                class="input-node">
+
+            </lightning-radio-group>
+
+        </template>
+
+        <!-- CHECKBOX -->
+
+        <template if:true={isCheckbox}>
+
+            <lightning-input
+                type="checkbox"
+                name={fieldConfig.id}
+                label={fieldConfig.label}
+                checked={currentValue}
+                required={fieldConfig.required}
+                field-level-help={fieldConfig.helpText}
+                onchange={handleInputChange}
+                onblur={handleBlur}
+                class="input-node">
+
+            </lightning-input>
+
+        </template>
+
+        <!-- STANDARD INPUT -->
+
+        <template if:true={isStandardInput}>
+
+            <lightning-input
+                type={fieldConfig.type}
+                name={fieldConfig.id}
+                label={fieldConfig.label}
+                value={currentValue}
+                required={fieldConfig.required}
+                field-level-help={fieldConfig.helpText}
+                onchange={handleInputChange}
+                onblur={handleBlur}
+                class="input-node">
+
+            </lightning-input>
+
+        </template>
+
+        <template if:true={hasAIExplanation}>
+
+            <div class="ai-insight-row">
+
+                <button
+                    type="button"
+                    class="ai-insight-trigger"
+                    title={confidenceTooltip}
+                    aria-label={confidenceTooltip}
+                    onclick={toggleExplanation}>
+
+                    <span class="ai-insight-icon">
+
+                        ?
+
+                    </span>
+
+                    <span class="ai-insight-copy">
+
+                        <span class="ai-insight-title">
+
+                            Field insight
+
+                        </span>
+
+                        <span class="ai-insight-summary">
+
+                            {aiInsightSummary}
+
+                        </span>
+
+                    </span>
+
+                    <span class="ai-insight-chevron">
+
+                        Details
+
+                    </span>
+
+                </button>
+
+                <section
+                    class={explanationPanelClass}>
+
+                    <div class="ai-explanation-title">
+
+                        Why this value was chosen
+
+                    </div>
+
+                    <p>
+
+                        {explanationLeadText}
+
+                    </p>
+
+                    <dl class="ai-explanation-details">
+
+                        <dt>Source field(s)</dt>
+                        <dd>{explanationSourceText}</dd>
+
+                        <dt>Confidence level</dt>
+                        <dd>{confidencePercent}</dd>
+
+                        <dt>Reasoning</dt>
+                        <dd>{explanationReasoning}</dd>
+
+                        <dt>Alternative options considered</dt>
+                        <dd>
+
+                            <template
+                                for:each={explanationAlternativeOptions}
+                                for:item="alternative">
+
+                                <div key={alternative.id}>
+
+                                    {alternative.text}
+
+                                </div>
+
+                            </template>
+
+                        </dd>
+
+                        <dt>Source data timestamp</dt>
+                        <dd>{explanationSourceUpdatedAt}</dd>
+
+                        <dt>Mapping type</dt>
+                        <dd>{explanationSelectionType}</dd>
+
+                    </dl>
+
+                </section>
+
+            </div>
+
+        </template>
+
+        <template if:true={hasSourceFields}>
+
+            <div class="source-fields-used">
+
+                {sourceFieldsLabel}: {sourceFieldsText}
+
+            </div>
+
+        </template>
+
+        <template if:true={fieldConfig.aiMessage}>
+
+            <div class="ai-field-message">
+
+                {fieldConfig.aiMessage}
+
+            </div>
+
+        </template>
+
+    </div>
+
+</template>

@@ -1,0 +1,50 @@
+<template> 
+    <div>
+
+        <h2
+            class="slds-text-heading_large slds-m-bottom_large slds-border_bottom slds-p-bottom_small">
+
+            {pageTitle}
+
+        </h2>
+
+        <div class={fieldGridClass}>
+
+            <template
+                for:each={activeFieldColumns}
+                for:item="column">
+
+                <div
+                    key={column.id}
+                    class="form-field-column">
+
+                    <template
+                        for:each={column.fields}
+                        for:item="field">
+
+                        <div
+                            key={field.id}
+                            class="form-field-item">
+
+                            <c-form-field
+                                field-config={field}
+                                current-value={field.currentValue}
+                                onvaluechange={handleFieldChange}
+                                onrevertaivalue={handleFieldRevert}
+                                onundofieldvalue={handleFieldUndo}
+                                onredofieldvalue={handleFieldRedo}>
+                            </c-form-field>
+
+                        </div>
+
+                    </template>
+
+                </div>
+
+            </template>
+
+        </div>
+
+    </div>
+
+</template>

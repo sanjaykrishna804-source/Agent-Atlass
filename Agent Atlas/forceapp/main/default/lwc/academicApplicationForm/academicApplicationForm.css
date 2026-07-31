@@ -1,0 +1,383 @@
+.application-layout {
+
+    display: grid;
+
+    grid-template-columns: 280px 1fr;
+
+    gap: 32px;
+
+    align-items: start;
+
+    padding: 24px;
+
+}
+
+.ai-page-loading-overlay {
+
+    align-items: center;
+
+    background: rgba(226, 232, 240, 0.82);
+
+    backdrop-filter: blur(2px);
+
+    bottom: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    left: 0;
+
+    position: fixed;
+
+    right: 0;
+
+    top: 0;
+
+    z-index: 9000;
+
+}
+
+.ai-page-loading-card {
+
+    align-items: center;
+
+    background: #f1f5f9;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    box-shadow: 0 16px 48px rgba(15, 23, 42, 0.24);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.7rem;
+
+    min-width: 18rem;
+
+    padding: 2rem 2.25rem;
+
+    text-align: center;
+
+}
+
+.ai-loading-mark {
+
+    align-items: center;
+
+    display: flex;
+
+    gap: 0.45rem;
+
+    justify-content: center;
+
+    min-height: 2.4rem;
+
+}
+
+.ai-loading-mark span {
+
+    animation: aiThinkingPulse 1.1s ease-in-out infinite;
+
+    background: #0176d3;
+
+    border-radius: 999px;
+
+    box-shadow: 0 0 0 0 rgba(1, 118, 211, 0.28);
+
+    display: block;
+
+    height: 0.7rem;
+
+    width: 0.7rem;
+
+}
+
+.ai-loading-mark span:nth-child(2) {
+
+    animation-delay: 0.14s;
+
+}
+
+.ai-loading-mark span:nth-child(3) {
+
+    animation-delay: 0.28s;
+
+}
+
+@keyframes aiThinkingPulse {
+
+    0%,
+    80%,
+    100% {
+
+        opacity: 0.45;
+
+        transform: translateY(0) scale(0.9);
+
+    }
+
+    40% {
+
+        opacity: 1;
+
+        transform: translateY(-0.35rem) scale(1);
+
+    }
+
+}
+
+.ai-page-loading-title {
+
+    color: #032d60;
+
+    font-size: 1rem;
+
+    font-weight: 800;
+
+    margin: 2.3rem 0 0;
+
+}
+
+.ai-page-loading-message {
+
+    color: #31527a;
+
+    font-size: 0.86rem;
+
+    font-weight: 600;
+
+    line-height: 1.35;
+
+    margin: 0;
+
+    max-width: 18rem;
+
+}
+
+.sidebar {
+
+    width: 100%;
+
+}
+
+.content-area {
+
+    width: 100%;
+
+}
+
+.form-workspace {
+
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 20rem);
+
+    gap: 24px;
+
+    align-items: start;
+
+}
+
+.form-main {
+
+    min-width: 0;
+
+}
+
+.ai-assistant-panel {
+
+    position: sticky;
+
+    top: 1rem;
+
+    width: 100%;
+
+    min-width: 0;
+
+}
+
+.record-page-layout {
+
+    grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
+
+    gap: 1.25rem;
+
+    padding: 1rem;
+
+}
+
+.record-page-layout .form-workspace {
+
+    grid-template-columns: minmax(28rem, 1fr) minmax(18rem, 24rem);
+
+    gap: 1.25rem;
+
+}
+
+.record-page-layout .ai-assistant-panel {
+
+    top: 0.75rem;
+
+}
+
+.clear-ai-filled-button {
+
+    margin-top: 0.75rem;
+
+    width: 100%;
+
+    font-weight: 700;
+
+}
+
+.admin-application-context {
+
+    border: 1px solid var(--slds-g-color-border-base-1);
+
+    border-radius: 0.35rem;
+
+    margin-top: 0.75rem;
+
+    padding: 0.75rem;
+
+}
+
+.admin-application-context__label {
+
+    display: block;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    margin-bottom: 0.25rem;
+
+}
+
+.admin-application-context__input {
+
+    border: 1px solid var(--slds-g-color-border-base-1);
+
+    border-radius: 0.25rem;
+
+    min-height: 2rem;
+
+    padding: 0 0.5rem;
+
+    width: 100%;
+
+}
+
+.admin-application-context__hint {
+
+    color: var(--slds-g-color-neutral-base-40);
+
+    font-size: 0.72rem;
+
+    line-height: 1.3;
+
+    margin: 0.35rem 0 0;
+
+}
+
+.sticky-footer {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 16px;
+
+    margin-top: 32px;
+
+}
+
+.text-saving {
+
+    color: #0176d3;
+
+    font-weight: 600;
+
+}
+
+.text-saved {
+
+    color: #2e844a;
+
+    font-weight: 600;
+
+}
+
+.text-save-error {
+
+    color: #ba0517;
+
+    font-weight: 600;
+
+}
+
+@media (max-width: 1100px) {
+
+    .form-workspace {
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+    }
+
+    .ai-assistant-panel {
+
+        width: 100%;
+
+        position: static;
+
+    }
+
+    .record-page-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .record-page-layout .sidebar {
+
+        overflow-x: auto;
+
+    }
+
+}
+
+@media (max-width: 1400px) {
+
+    .record-page-layout .form-workspace {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .record-page-layout .ai-assistant-panel {
+
+        position: static;
+
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .application-layout {
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+        padding: 16px;
+
+    }
+
+}

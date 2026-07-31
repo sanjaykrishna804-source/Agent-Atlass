@@ -1,0 +1,185 @@
+.ai-filler-container {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 0.6rem;
+
+    padding: 0.65rem 0.75rem;
+
+    margin-bottom: 1rem;
+
+    background:
+        linear-gradient(
+            135deg,
+            #38BDF8 0%,
+            #0EA5E9 100%
+        );
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.12);
+
+}
+
+.left-section {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    flex: 0 0 auto;
+
+}
+
+.right-section {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.45rem;
+
+    min-width: 0;
+
+}
+
+.ai-fill-button {
+
+    --slds-c-button-brand-color-background:
+        #ffffff;
+
+    --slds-c-button-brand-color-border:
+        #ffffff;
+
+    --slds-c-button-brand-text-color:
+        #0369A1;
+
+    font-weight: 700;
+
+    min-width: 8.25rem;
+
+    flex-shrink: 0;
+
+    white-space: nowrap;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+.ai-fill-button:hover {
+
+    transform: translateY(-2px);
+
+}
+
+.processing-container {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.45rem;
+
+    color: white;
+
+    font-weight: 600;
+
+}
+
+.processing-text {
+
+    margin: 0;
+
+    color: white;
+
+    font-size: 0.78rem;
+
+    line-height: 1.2;
+
+}
+
+.results-summary {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.4rem;
+
+    background:
+        rgba(255, 255, 255, 0.20);
+
+    padding: 0.35rem 0.5rem;
+
+    border-radius: 8px;
+
+    max-width: 6.25rem;
+
+    backdrop-filter: blur(4px);
+
+}
+
+.results-text {
+
+    color: white;
+
+    font-weight: 600;
+
+    font-size: 0.68rem;
+
+    line-height: 1.15;
+
+    overflow-wrap: anywhere;
+
+}
+
+.view-details-btn {
+
+    --slds-c-button-text-color:
+        white;
+
+}
+
+lightning-button-menu {
+
+    --slds-c-button-color-border:
+        transparent;
+
+    --slds-c-button-text-color:
+        white;
+
+}
+
+@media (max-width: 768px) {
+
+    .ai-filler-container {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+    .left-section {
+
+        justify-content: center;
+
+    }
+
+    .right-section {
+
+        justify-content: center;
+
+    }
+
+}

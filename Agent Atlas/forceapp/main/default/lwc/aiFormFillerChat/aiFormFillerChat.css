@@ -1,0 +1,102 @@
+.chat-shell {
+    border: 1px solid #dddbda;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    background: #f6f7f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 28rem;
+    max-height: calc(100vh - 14rem);
+    padding-bottom: 3.25rem;
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.chat-header h2 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    min-height: 12rem;
+    overflow-y: auto;
+    margin-bottom: 0.75rem;
+}
+
+.message {
+    max-width: 82%;
+    padding: 0.5rem 0.625rem;
+    border-radius: 6px;
+    line-height: 1.35;
+    font-size: 0.875rem;
+}
+
+.message.assistant {
+    align-self: flex-start;
+    background: #f3f3f3;
+    color: #181818;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: #0176d3;
+    color: #ffffff;
+}
+
+.clarification-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+}
+
+.clarification-option {
+    border: 1px solid #0176d3;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #0176d3;
+    cursor: pointer;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    padding: 0.3rem 0.5rem;
+}
+
+.clarification-option:hover,
+.clarification-option:focus {
+    background: #eef4ff;
+}
+
+.composer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.5rem;
+    align-items: start;
+    margin-top: auto;
+}
+
+.composer lightning-button-icon {
+    display: block;
+    align-self: start;
+    margin-top: 0;
+}
+
+.processing {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2rem;
+    margin-top: 0.5rem;
+    color: #706e6b;
+    font-size: 0.8125rem;
+}

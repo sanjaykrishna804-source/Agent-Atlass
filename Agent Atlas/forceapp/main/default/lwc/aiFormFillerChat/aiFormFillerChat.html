@@ -1,0 +1,115 @@
+<template>
+
+    <section class="chat-shell">
+
+        <div class="chat-header">
+
+            <lightning-icon
+                icon-name="utility:einstein"
+                size="x-small">
+
+            </lightning-icon>
+
+            <h2>
+
+                AI Form Chat
+
+            </h2>
+
+        </div>
+
+        <div class="messages">
+
+            <template
+                for:each={messages}
+                for:item="message">
+
+                <div
+                    key={message.id}
+                    class={message.cssClass}>
+
+                    <span>
+
+                        {message.text}
+
+                    </span>
+
+                    <template if:true={message.hasOptions}>
+
+                        <div class="clarification-options">
+
+                            <template
+                                for:each={message.options}
+                                for:item="option">
+
+                                <button
+                                    key={option.id}
+                                    class="clarification-option"
+                                    data-option-id={option.id}
+                                    onclick={handleClarificationOption}
+                                    type="button">
+
+                                    {option.label}
+
+                                </button>
+
+                            </template>
+
+                        </div>
+
+                    </template>
+
+                </div>
+
+            </template>
+
+        </div>
+
+        <div class="composer">
+
+            <lightning-input
+                type="text"
+                variant="label-hidden"
+                value={draftPrompt}
+                placeholder="Ask me to fill, clear, or update a field"
+                disabled={isProcessing}
+                onchange={handlePromptChange}
+                onkeydown={handlePromptKeyDown}>
+
+            </lightning-input>
+
+            <lightning-button-icon
+                icon-name="utility:send"
+                variant="brand"
+                alternative-text="Send prompt"
+                title="Send prompt"
+                disabled={isSendDisabled}
+                onclick={handleSendPrompt}>
+
+            </lightning-button-icon>
+
+        </div>
+
+        <template if:true={showInlineProcessing}>
+
+            <div class="processing">
+
+                <lightning-spinner
+                    size="small"
+                    alternative-text="Filling form">
+
+                </lightning-spinner>
+
+                <span>
+
+                    Finding matching fields...
+
+                </span>
+
+            </div>
+
+        </template>
+
+    </section>
+
+</template>

@@ -1,0 +1,124 @@
+<template> 
+
+    <div class="ai-filler-container">
+
+        <!-- LEFT SECTION -->
+
+        <div class="left-section">
+
+            <!-- MAIN BUTTON -->
+
+            <lightning-button
+                if:true={showButton}
+                variant="brand"
+                label={buttonLabel}
+                icon-name="utility:einstein"
+                icon-position="left"
+                onclick={handleFillClick}
+                disabled={isProcessing}
+                class="ai-fill-button">
+
+            </lightning-button>
+
+            <!-- PROCESSING -->
+
+            <div if:true={isProcessing}
+                 class="processing-container">
+
+                <lightning-spinner
+                    alternative-text="AI is filling your form"
+                    size="small">
+
+                </lightning-spinner>
+
+                <p class="processing-text">
+
+                    {processingMessage}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT SECTION -->
+
+        <div class="right-section">
+
+            <!-- RESULTS -->
+
+            <div if:true={showResults}
+                 class="results-summary">
+
+                <lightning-icon
+                    icon-name="utility:success"
+                    size="x-small"
+                    variant="inverse">
+
+                </lightning-icon>
+
+                <span class="results-text">
+
+                    {filledFieldsCount}
+                    fields auto-filled
+
+                </span>
+
+            </div>
+
+            <!-- OPTIONS -->
+
+            <lightning-button-menu
+                if:true={showOptions}
+                alternative-text="AI Fill Options"
+                icon-name="utility:settings"
+                menu-alignment="right"
+                onselect={handleMenuSelect}>
+
+                <lightning-menu-item
+                    value="fill-all"
+                    label="Fill All Pages"
+                    icon-name="utility:all">
+
+                </lightning-menu-item>
+
+                <lightning-menu-item
+                    value="fill-current"
+                    label="Fill Current Page Only"
+                    icon-name="utility:page">
+
+                </lightning-menu-item>
+
+                <lightning-menu-item
+                    value="fill-empty"
+                    label="Fill Empty Fields Only"
+                    icon-name="utility:add">
+
+                </lightning-menu-item>
+
+                <lightning-menu-divider>
+
+                </lightning-menu-divider>
+
+                <lightning-menu-item
+                    value="sources"
+                    label="View Source Fields"
+                    icon-name="utility:preview"
+                    disabled={noSourceBreakdown}>
+
+                </lightning-menu-item>
+
+                <lightning-menu-item
+                    value="configure"
+                    label="Configure AI Settings"
+                    icon-name="utility:settings">
+
+                </lightning-menu-item>
+
+            </lightning-button-menu>
+
+        </div>
+
+    </div>
+
+</template>

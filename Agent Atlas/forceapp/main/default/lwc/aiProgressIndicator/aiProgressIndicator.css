@@ -1,0 +1,33 @@
+.progress-container {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.45rem;
+
+    padding: 0.4rem 0.6rem;
+
+    background: white;
+
+    border-radius: 6px;
+
+    margin-top: 0.5rem;
+
+    max-width: 12rem;
+
+}
+
+.status-text {
+
+    font-size: 0.78rem;
+
+    line-height: 1.15;
+
+    font-weight: 600;
+
+    color: #16325c;
+
+    overflow-wrap: anywhere;
+
+}
