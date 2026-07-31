@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Stores application-specific applicant and admissions review data.</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <label>Academic Application</label>
+    <nameField>
+        <label>Application Number</label>
+        <type>AutoNumber</type>
+        <displayFormat>APP-{00000}</displayFormat>
+    </nameField>
+    <pluralLabel>Academic Applications</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

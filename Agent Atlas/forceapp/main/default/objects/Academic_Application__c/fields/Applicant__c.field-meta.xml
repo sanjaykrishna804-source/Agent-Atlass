@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Applicant__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Applicant Contact associated with this academic application.</description>
+    <label>Applicant</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Academic Applications</relationshipLabel>
+    <relationshipName>Reviewed_Academic_Applications</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>AI_Confidence_Score__c</columns>
+    <columns>NAME</columns>
+    <columns>Question_Id__c</columns>
+    <columns>Form_Submission__c</columns>
+    <columns>Response_Value__c</columns>
+    <columns>Response_Date__c</columns>
+    <columns>Question_Text__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>
